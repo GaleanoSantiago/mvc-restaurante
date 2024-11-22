@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    if(empty($_SESSION['usuario'])){
-        header("Location:./../../views/login/index.php");
-    }
+    // session_start();
+    // if(empty($_SESSION['usuario'])){
+    //     header("Location:./../../views/login/index.php");
+    // }
     
 ?>
 
@@ -36,122 +36,7 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 
-                <?php if($_SESSION['id_rol_usuario']==1): ?>
-                    
-                    <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" id="item-inicio" href="./../dashboard/index.php">Inicio</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Empleados
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../empleados/index.php">Lista de Empleados</a></li>
-                                <li><a class="dropdown-item text-light" href="./../empleados/create.php">Nuevo Empleado</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Médicos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../medicos/index.php">Lista de Médicos</a></li>
-                                <li><a class="dropdown-item text-light" href="./../medicos/create.php">Nuevo Médico</a></li>
-                            </ul>
-                        </li>    
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Pacientes
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../pacientes/index.php">Lista de Pacientes</a></li>
-                                <li><a class="dropdown-item text-light" href="./../pacientes/create.php">Nuevo Paciente</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consultas
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../consultas/index.php">Lista de Consultas</a></li>
-                                <li><a class="dropdown-item text-light" href="./../consultas/create.php">Nueva Consulta</a></li>
-                            </ul>
-                        </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link " id="item-consultas" href="./../login/user_list.php">Usuarios</a>
-                        </li> -->
-                    </ul>
-                <?php elseif($_SESSION['id_rol_usuario']==2): ?>
-                    <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" id="item-inicio" href="./../dashboard/index.php">Inicio</a>
-                        </li>    
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Empleados
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../empleados/index.php">Lista de Empleados</a></li>
-                                <li><a class="dropdown-item text-light" href="./../empleados/create.php">Nuevo Empleado</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Médicos
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../medicos/index.php">Lista de Médicos</a></li>
-                                <li><a class="dropdown-item text-light" href="./../medicos/create.php">Nuevo Médico</a></li>
-                            </ul>
-                        </li> 
-                        
-                    </ul>
-                <?php elseif($_SESSION['id_rol_usuario']==3): ?>
-                    <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" id="item-inicio" href="./../dashboard/index.php">Inicio</a>
-                        </li>    
-                        
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Pacientes
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../pacientes/index.php">Lista de Pacientes</a></li>
-                                <li><a class="dropdown-item text-light" href="./../pacientes/create.php">Nuevo Paciente</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Consultas
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../consultas/index.php">Lista de Consultas</a></li>
-                                <li><a class="dropdown-item text-light" href="./../consultas/create.php">Nueva Consulta</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                <?php elseif($_SESSION['id_rol_usuario']==4): ?>
-                    <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a class="nav-link" id="item-inicio" href="./../dashboard/index.php">Inicio</a>
-                        </li>    
-                        
-                        <li class="nav-item">
-                            <a class="nav-link " id="item-consultas" href="./../consultas/consultas_medico.php">Mis Consultas</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Pacientes
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item text-light" href="./../pacientes/index.php">Lista de Pacientes</a></li>
-                                <li><a class="dropdown-item text-light" href="./../pacientes/create.php">Nuevo Paciente</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                <?php endif; ?>
+                
                 </div>
                 <div class="logout-container">
                     <form action="./../login/functions.php" class="" method="post">

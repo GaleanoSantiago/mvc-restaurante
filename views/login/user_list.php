@@ -2,13 +2,13 @@
 <?php
     require_once("./../head/head.php");
 
-    if($_SESSION['id_rol_usuario']!=1){
-        header('Location:./../dashboard/index.php');
-    }
-    require_once("./../../controllers/EmpleadoController.php");
-    require_once("./../../controllers/AuxiliarController.php");
+    // if($_SESSION['id_rol_usuario']!=1){
+    //     header('Location:./../dashboard/index.php');
+    // }
+
     require_once("./../../controllers/LoginController.php");
-    $rows = indexUsuarios();
+    $obj= new UsuarioController();
+    $rows = $obj->index();
         
     // var_dump($rows);
     // die();
@@ -19,9 +19,9 @@
             <h1 class="text-center">Usuarios</h1>
             
             <div class="mb-3 d-flex justify-content-around">
-                <?php if($_SESSION['id_rol_usuario']==1): ?>
+                <?php #if($_SESSION['id_rol_usuario']==1): ?>
                     <a href="./create.php" class="btn btn-success">Agregar Nuevo Usuario</a>
-                <?php endif; ?>
+                <?php #endif; ?>
 
                 
                 <div class="d-flex gap-4">
@@ -46,13 +46,12 @@
                     <thead class="">
                         <tr>
                             <th>ID Usuario</th>
-                            <th>ID Persona</th>
-                            <th>Nombre de Usuario</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
                             <!-- <th>ID Rol Usuario</th> -->
-                            <th>Nombre y Apellido</th>
-                            <th>CUIT</th>
-                            <th>DNI</th>
-                            <th>Rol Persona</th>
+                            <th>Email</th>
+                            <th>Telefono</th>
+                            <th>UserName</th>
                             <th>Rol Usuario</th>
                             <th>Fecha de Creación</th>
                             <th colspan="3">Funciones</th>
@@ -64,15 +63,13 @@
                         foreach($rows as $row): ?>
                         <tr>
                             <td><?= $row['id_usuario']?></td>
-                            <td><?= $row['id_persona']?></td>
-                            <td><?= $row['user_name']?></td>
-                            <!-- <td><?= $row['id_rol_usuario']?></td> -->
-                            <td><?= $row['nombre_persona']?></td>
-                            <td><?= $row['cuit_persona']?></td>
-                            <td><?= $row['dni_persona']?></td>
-                            <td><?= $row['rol_persona']?></td>
-                            <td><?= $row['rol_usuario']?></td>
-                            <td><?= $row['created_at']?></td>
+                            <td><?= $row['nombre']?></td>
+                            <td><?= $row['apellido']?></td>
+                            <td><?= $row['email']?></td>
+                            <td><?= $row['telefono']?></td>
+                            <td><?= $row['usuario']?></td>
+                            <td><?= $row['id_rol']?></td>
+                            <td><?= $row['fecha_registro']?></td>
                             <td>
                                 <a href="./show.php?id=<?= $row['id_usuario']?>" class="btn btn-outline-primary">Ver</a>
                             </td>
