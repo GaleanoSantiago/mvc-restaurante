@@ -14,26 +14,7 @@ class Usuario {
      * @return array|false Devuelve los datos del usuario si es válido, o false si falla
      */
     public function authenticate($username, $password) {
-        /*
-         $stmt = $this->db->prepare("
-            SELECT 
-                u.id_usuario, 
-                u.usuario, 
-                u.contrasena, 
-                u.id_rol, 
-                r.nombre_rol,
-                u.nombre,
-                u.apellido
-            FROM 
-                usuarios u
-            INNER JOIN 
-                roles_usuarios r 
-            ON 
-                u.id_rol = r.id_rol 
-            WHERE u.usuario = :username
-        ");
-        */
-        
+                
         $stmt = $this->db->prepare("
             SELECT 
                 u.id_usuario, 
