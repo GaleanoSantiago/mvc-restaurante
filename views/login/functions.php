@@ -22,21 +22,31 @@ if(isset($_REQUEST['login'])){
     }else{
         header("Location:index.php?msg=error");
     }
-}elseif(isset($_REQUEST["logout"])){
-    // Destruir la sesión
-    cerrarSesion();
+}
 
-}elseif(isset($_REQUEST["insertUsuario"])){
+if(isset($_REQUEST["logout"])){
+    session_unset();    //Limpiar session
+    session_destroy();  //Destruir session
+
+    // Redirigir al usuario a la página de inicio o de login
+    header("Location: index.php");
+
+}
+
+if(isset($_REQUEST["insertUsuario"])){
     $response = guardarUsuario();
     if($response != false){
         header("Location:create.php?msg=userGuard");
     }
-}elseif(isset($_REQUEST["deleteUsuario"])){
-    $response = deleteUsuario();
-    
-    if($response != false){
+}
 
-        header("Location:user_list.php?msg=elimSuccs");
+if(isset($_REQUEST["deleteUsuario"])){
+    $id_usuario = $_REQUEST["id_usuario"];
+    $result = $userObj->delete($id_usuario);
+    
+    if($result != false){
+
+        header('Location: user_list.php?msg=elimSuccs');
 
     }
 }elseif(isset($_REQUEST["create"])){
@@ -50,22 +60,3 @@ if(isset($_REQUEST['login'])){
     }
 }
 
-// ==================================== Funciones que ya no se usan ====================================
-
-function cerrarSesion(){
-    
-    session_destroy();
-
-    // Redirigir al usuario a la página de inicio o de login
-    header("Location: ./../../views/login/index.php");
-
-}
-
-
-function deleteUsuario(){
-    $id_usuario = $_REQUEST["id_usuario"];
-
-    $result = eliminarUsuario($id_usuario);
-
-    return $result;
-}

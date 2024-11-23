@@ -68,8 +68,8 @@ class UsuarioController {
     }
 
     public function delete($id) {
-        $this->model->delete($id);
-        header('Location: /usuarios');
+        return $this->model->delete($id);
+
     }
 }
 
@@ -101,11 +101,5 @@ function indexUsuarios(){
 
 function insertarUsuario($id_persona, $id_rol_usuario, $user_name, $password){
     $result = insertarUsuarioModelo($id_persona, $id_rol_usuario, $user_name, $password);
-    return $result;
-}
-
-// Eliminar usuario
-function eliminarUsuario($id_usuario){
-    $result = eliminarUsuarioModal($id_usuario);
     return $result;
 }

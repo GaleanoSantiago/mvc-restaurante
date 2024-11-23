@@ -14,6 +14,7 @@ class Usuario {
      * @return array|false Devuelve los datos del usuario si es válido, o false si falla
      */
     public function authenticate($username, $password) {
+
         $stmt = $this->db->prepare("
             SELECT 
                 u.id_usuario, 
@@ -164,14 +165,3 @@ function showUserModel($id){
     return ($stament->execute()) ? $stament->fetchAll() : false;
 }
 
-// Para borrar usuario
-function eliminarUsuarioModal($id_usuario) {
-    $PDO = getConnection();
-    $stmt = $PDO->prepare(
-        "DELETE FROM `usuarios` WHERE `usuarios`.`id_usuario` = :id_usuario"
-    );
-
-    $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-
-    return $stmt->execute();
-}
