@@ -73,7 +73,7 @@
                     <!-- Numero de Personas-->
                     <div class="mb-3">
                         <label for="num_personas" class="form-label">Cantidad de Personas</label>
-                        <input type="number" name="num_personas" id="num_personas" class="form-control" required>
+                        <input type="number" name="num_personas" id="num_personas" class="form-control" max="<?= $_POST['capacidad_mesa']; ?>" required>
                     </div>
             
                  <!-- Codigo de acceso -->

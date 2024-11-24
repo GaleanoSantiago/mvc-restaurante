@@ -1,3 +1,5 @@
+
+
 // ----------------- Formulario de Login -----------------
 const formLogin = document.getElementById("formLogin");
 const formPass = document.getElementById("formPass");
@@ -272,7 +274,7 @@ if(selectPacientes){
 
 // Seleccionar todos los elementos con la clase "estado_consulta"
 // Seleccionar todos los elementos con la clase "estado_consulta"
-const selectEstadoConsultas = document.querySelectorAll(".estado_consulta") || null;
+const selectEstadoConsultas = document.querySelectorAll(".estado_reserva") || null;
 
 const btnDiagnostico = document.querySelectorAll(".btn-diagnostico") || null;
 const inputIdConsulta = document.getElementById("inputIdConsulta") || null; 

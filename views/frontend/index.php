@@ -49,6 +49,7 @@
                             </div>
                             <div class="form-resgistrar">
                                 <form action="./../reservacion/create.php" method="POST">
+                                    <input type="hidden" name="capacidad_mesa" value="<?= $row['capacidad_mesa']?>">
                                     <input type="hidden" name="id_mesa" value="<?= $row["id_mesa"]?>">
                                     <input type="hidden" name="n_mesa" value="<?= $row["n_mesa"]?>">
                                     <button type="submit" <?= ($row['id_estado'] != 1) ? 'disabled' : '' ?> class="<?= ($row['id_estado'] != 1) ? 'd-none' : '' ?> btn btn-light">Reservar</button>

@@ -9,7 +9,7 @@
     require_once("./../../controllers/ReservacionesController.php");
     $obj= new ReservacionController();
     $rows = $obj->index();
-        
+    $estado_reserva = $obj->indexEstadoReservacion();  
     // var_dump($rows);
     // die();
 ?>
@@ -20,7 +20,7 @@
             
             <div class="mb-3 d-flex justify-content-around">
                 <?php #if($_SESSION['id_rol_usuario']==1): ?>
-                    <a href="./create.php" class="btn btn-success">Agregar Nueva Reservacion</a>
+                    <a href="../frontend/index.php" class="btn btn-success">Agregar Nueva Reservacion</a>
                 <?php #endif; ?>
 
                 
@@ -49,11 +49,10 @@
                             <th>ID Cliente</th>
                             <th>Cliente</th>
                             <th>Fecha Reservacion</th>
-                            <!-- <th>ID Rol Usuario</th> -->
-                            <th>Estado</th>
                             <th>Numero de Personas</th>
                             <th>Numero de Mesa</th>
                             <th>Capacidad de Mesa</th>
+                            <th>Estado</th>
                             <th colspan="3">Funciones</th>
                         </tr>
                     </thead>
@@ -67,12 +66,25 @@
                             <td><?= $row['id_cliente']?></td>
                             <td><?= $row['nombre_cliente'] ." ". $row['apellido_cliente']?></td>
                             <td><?= $row['fecha_reservacion']?></td>
-                            <td><?= $row['estado_reservacion']?></td>
                             <td><?= $row['numero_personas']?></td>
                             <td><?= $row['n_mesa']?></td>
                             <td><?= $row['capacidad_mesa']?></td>
                             <td>
-                                <a href="./edit.php?id=<?= $row['id_reservacion']?>" class="btn btn-outline-success">Editar</a>
+                                <form action="./functions.php" method="POST" style="width:100%;">
+                                    <input type="hidden" name="cambiarEstado">
+                                                               
+                                    <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
+                                
+                                    <select name="estado_reserva" id="estado_reserva" class="form-select text-center estado_reserva" style="color:#fff;" onchange="this.form.submit()">
+                                    <?php foreach($estado_reserva as $estado) :?> 
+                                        <option  value="<?= $estado["id_estado"]?>"
+                                        <?php if($estado["estado_reservacion"]==$row['estado_reservacion']): ?> 
+                                            selected 
+                                        <?php endif; ?> 
+                                    ><?= $estado["estado_reservacion"]?></option>
+                                <?php endforeach;?>
+                                </select>
+                                </form>
                             </td>
                             <td>
                                 <form action="./functions.php" method="POST">
@@ -94,7 +106,91 @@
             </div>
         </div>
     </section>
-    
+  
+    <style>
+        #estado_reserva option {
+            padding: 30px 0 !important;
+        }
+    </style>
+
+    <script>
+        const btnDiagnostico = document.querySelectorAll(".btn-diagnostico") || null;
+
+        if (btnDiagnostico) {
+    btnDiagnostico.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idConsulta = btn.value;
+            inputIdConsulta.value = idConsulta;
+            
+            fetch(`functions.php?id_reservacion=${idConsulta}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.success) {
+
+                        descripcionDiagnostico.value = data.descripcion_diagnostico;
+                        notasAdicionales.value = data.notas_adicionales;
+                        descripcionDiagnostico.disabled=true;
+                        notasAdicionales.disabled=true;
+                        btnEnviarModal.disabled=true;
+
+                        updateDiv.classList.remove("d-none");
+
+                    } else {
+                        descripcionDiagnostico.value = '';
+                        notasAdicionales.value = '';
+                        descripcionDiagnostico.disabled=false;
+                        notasAdicionales.disabled=false;
+                        btnEnviarModal.disabled=false;
+                        if (!updateDiv.classList.contains("d-none")) {
+                            updateDiv.classList.add("d-none");
+                        }
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    });
+}
+        document.addEventListener("DOMContentLoaded", () => {
+    const selectEstadoReservas = document.querySelectorAll(".estado_reserva");
+
+    if (selectEstadoReservas.length > 0) {
+        selectEstadoReservas.forEach(selectEstado => {
+            setOptionColors(selectEstado);
+            updateSelectColor({ target: selectEstado });
+
+            selectEstado.addEventListener("change", updateSelectColor);
+            selectEstado.addEventListener("change", handleSelectChange);
+        });
+    } else {
+        console.warn("No se encontraron elementos con la clase 'estado_reserva'.");
+    }
+});
+
+function setOptionColors(selectEstado) {
+    const options = selectEstado.options;
+
+    if (options.length > 0) {
+        if (options[0]) options[0].classList.add("bg-danger", "text-white");
+        if (options[1]) options[1].classList.add("bg-warning", "text-white");
+        if (options[2]) options[2].classList.add("bg-success", "text-white");
+    }
+}
+
+function updateSelectColor(event) {
+    const selectEstado = event.target;
+    const selectedOption = selectEstado.options[selectEstado.selectedIndex];
+
+    if (selectedOption) {
+        const bgColorClass = selectedOption.className.split(' ')[0];
+        selectEstado.className = 'form-select text-center ' + bgColorClass;
+    }
+}
+
+function handleSelectChange(event) {
+    console.log("Opción seleccionada:", event.target.value);
+}
+    </script>
    
 <?php
     require_once("./../head/footer.php");

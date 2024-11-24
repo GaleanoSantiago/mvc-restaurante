@@ -15,6 +15,12 @@ class ReservacionController {
         return $reservacion;
     }
 
+    //Llama a todo los datos del estado reservacion
+    public function indexEstadoReservacion() {
+        $reservacion = $this->model->getEstadoReservacionAll();
+        return $reservacion;
+    }
+
     public function create() {
         
             // $dataCliente = [
@@ -68,6 +74,11 @@ class ReservacionController {
             $usuario = $this->model->getById($id);
             //require_once 'views/usuarios/edit.php';
         }
+    }
+
+    function updateEstadoReserva($id_reservacion, $id_estado_reserva){
+        $response = $this->model->updateEstadoReservaModel($id_reservacion, $id_estado_reserva);
+        return $response;
     }
 
     public function delete($id) {

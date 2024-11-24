@@ -52,7 +52,22 @@ if(isset($_REQUEST["deleteUsuario"])){
     
     if($response != false){
 
-        header('Location: reservacion_list.php?msg=elimSuccs');
+        header('Location: index.php?msg=elimSuccs');
 
     }
 }
+
+
+if(isset($_REQUEST["cambiarEstado"])){
+    
+    $id_reservacion = $_REQUEST["id_reservacion"];
+    $id_estado_reserva = $_REQUEST["estado_reserva"];
+
+    $response = $ReservacionObj->updateEstadoReserva($id_reservacion, $id_estado_reserva);
+
+    if($response != false){
+        header('Location: index.php');
+    }
+        
+}
+
