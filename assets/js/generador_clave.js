@@ -38,7 +38,7 @@ if(formCliente && btnClave){
         column.classList.add("d-none");
         btnKey.classList.add("activado");
         btnFirst.classList.remove("activado");
-        inputClave.disabled=false;
+        // inputClave.disabled=false;
         btnClave.classList.add("d-none");
 
         inputFirst.forEach(input=>{
@@ -52,7 +52,7 @@ if(formCliente && btnClave){
         column.classList.remove("d-none");
         btnFirst.classList.add("activado");
         btnKey.classList.remove("activado");
-        inputClave.disabled=true;
+        // inputClave.disabled=true;
         btnClave.classList.remove("d-none");
         inputFirst.forEach(input=>{
             input.disabled = false;

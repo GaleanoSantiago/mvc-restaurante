@@ -82,7 +82,7 @@
                  <div class="mb-3">
                         <label for="clave_acceso" class="form-label">Codigo de acceso</label>
                         <div class="form-pass-div d-flex gap-1">
-                            <input type="text" name="clave_acceso" disabled id="input_clave" class="form-control" required>
+                            <input type="text" name="clave_acceso"  id="input_clave" class="form-control" required>
                             <button type="button" id="btn_clave">
                                 <span>
                                     x
