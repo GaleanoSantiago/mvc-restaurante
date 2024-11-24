@@ -14,7 +14,7 @@ class Usuario {
      * @return array|false Devuelve los datos del usuario si es válido, o false si falla
      */
     public function authenticate($username, $password) {
-                
+
         $stmt = $this->db->prepare("
             SELECT 
                 u.id_usuario, 

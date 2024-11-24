@@ -33,33 +33,13 @@ class Reservacion {
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function create($dataCliente, $dataReserva) {
-
-        //---------------------------------------------------Clientes---------------------------------------------------
-        $stmt = $this->db->prepare("
-            INSERT INTO clientes (nombre_cliente, apellido_cliente, dni_cliente, clave_acceso_cliente)
-            VALUES (:nombre, :apellido, :dni, :clave_acceso)
-        ");
-        $stmt->execute($dataCliente);
-    
-        // Obtener el DNI para buscar el cliente recién insertado
-        $dni = $dataCliente['dni'];
-    
-        //-------Consulta para obtener el id_cliente-------
-        $stmt = $this->db->prepare("SELECT id_cliente FROM `clientes` WHERE dni_cliente = :dni");
-        $stmt->bindParam(':dni', $dni, PDO::PARAM_STR);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+    public function create($dataReserva) {    
     
         //---------------------------------------------------Reservas---------------------------------------------------
         $stmt = $this->db->prepare("
             INSERT INTO reservaciones (id_cliente, fecha_reservacion, id_estado, numero_personas, id_mesa) 
             VALUES (:id_cliente, :fecha_reservacion, :id_estado, :num_personas, :id_mesa)
         ");
-    
-        // Añadir id_cliente a los datos de reserva
-        $dataReserva['id_cliente'] = $result['id_cliente'];
     
         // Ejecutar la consulta
         return $stmt->execute($dataReserva);

@@ -14,6 +14,7 @@ if(isset($_REQUEST['login'])){
     // die();
 
     if($users){
+
         $_SESSION['user_name'] = $user["usuario"];
         $_SESSION['id_rol'] = $user["id_rol"];
 
@@ -48,9 +49,7 @@ if(isset($_REQUEST["deleteUsuario"])){
         header('Location: user_list.php?msg=elimSuccs');
 
     }
-}
-
-if(isset($_REQUEST["create"])){
+}elseif(isset($_REQUEST["create"])){
     
     $response=$userObj->create();
 
@@ -60,3 +59,4 @@ if(isset($_REQUEST["create"])){
 
     }
 }
+

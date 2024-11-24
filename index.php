@@ -1,5 +1,6 @@
 <?php
 
-header("Location: ./views/login/index.php");
+header("Location: ./views/frontend/index.php");
 exit(); 
 
+?>
