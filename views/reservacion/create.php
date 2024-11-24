@@ -63,8 +63,8 @@
                         <input type="number" name="dni" id="dni" class="form-control" required>
                     </div>
                  
-                 <!-- Codigo de acceso -->
-                 <div class="mb-3">
+                    <!-- Codigo de acceso -->
+                    <div class="mb-3">
                         <label for="password" class="form-label">Codigo de acceso</label>
                         <div class="form-pass-div d-flex gap-1">
                             <input type="password" name="clave_acceso" id="clave_acceso" class="form-control" required>
