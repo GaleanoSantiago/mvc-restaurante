@@ -29,7 +29,7 @@
             <div class="row">
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
                     <!-- Campos de Invisibles -->
-                    <div class="mb-3">
+                    <div class="">
                         <input id="mesa" name="mesa" type="hidden" value="1" />
                         <input id="estado" name="estado" type="hidden" value="2" />
                         <input id="fecha_reserva" name="fecha_reserva" type="hidden" value="<?= date('Y-m-d H:i:s')?>" />
@@ -67,7 +67,7 @@
                  <div class="mb-3">
                         <label for="password" class="form-label">Codigo de acceso</label>
                         <div class="form-pass-div d-flex gap-1">
-                            <input type="password" name="clave_acceso" id="clave_acceso" class="form-control" required>
+                            <input type="password" name="clave_acceso" id="password" class="form-control" required>
                             <button type="button" id="btnMostrar">
                                 <span>
                                     <!-- Botón con ojo -->
