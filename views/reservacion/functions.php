@@ -14,6 +14,23 @@ if(isset($_REQUEST["create"])){
     }
 }
 
+if(isset($_REQUEST["createKey"])){
+
+    $clienteObj = new ClienteController();
+    $response=$clienteObj->getByClave();
+
+    $respuesta = $ReservacionObj->createByKey($response["id_cliente"]);
+
+    // var_dump($respuesta);
+    // die();
+    if($respuesta != false){
+
+        header("Location:create.php?msg=succs");
+
+    }
+}
+
+
 
 if(isset($_REQUEST["updateReserva"])){
 

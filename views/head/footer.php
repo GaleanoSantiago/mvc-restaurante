@@ -6,5 +6,6 @@
     <!-- JS Propios -->
     <script src="./../../assets/js/forms.js"></script>
     <script src="./../../assets/js/validaciones_forms.js"></script>
+    <script src="./../../assets/js/generador_clave.js"></script>
 </body>
 </html>

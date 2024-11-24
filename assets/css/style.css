@@ -514,3 +514,24 @@ footer a:hover{
     font-size:1.1rem;
     /* font-weight:normal; */
 }
+
+.clienteCards{
+    margin-bottom:30px;
+}
+
+.btn-clienteCard{
+    padding:20px 30px;
+    border:1px solid var(--bs-secondary);
+}
+.btn-clienteCard:hover{
+    border:1px solid var(--bs-secondary);
+    background:var(--blueBright);
+    color:#fff;
+
+}
+.btn-clienteCard.activado{
+    border:1px solid var(--bs-secondary) !important;
+    background:var(--blueBright) !important;
+    color:#fff !important;
+
+}
