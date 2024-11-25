@@ -1,8 +1,8 @@
 <?php
-    // session_start();
-    // if(isset($_SESSION['usuario'])){
-    //     header("Location:./../../views/dashboard/index.php");
-    // }
+    session_start();
+    if(isset($_SESSION['user_name'])){
+        header("Location:./../../views/dashboard/index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
