@@ -34,4 +34,50 @@ Class Mesa{
         ");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    
+    // Obtener todas las mesas
+    public function obtenerMesas() {
+        $query = "SELECT * FROM mesas";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Agregar una nueva mesa
+    public function agregarMesa($n_mesa, $capacidad_mesa, $descripcion_mesa) {
+        $query = "INSERT INTO mesas (n_mesa, capacidad_mesa, descripcion_mesa) VALUES (:n_mesa, :capacidad_mesa, :descripcion_mesa)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':n_mesa', $n_mesa);
+        $stmt->bindParam(':capacidad_mesa', $capacidad_mesa);
+        $stmt->bindParam(':descripcion_mesa', $descripcion_mesa);
+        return $stmt->execute();
+    }
+
+    // Obtener una mesa por ID
+    public function obtenerMesaPorId($id_mesa) {
+        $query = "SELECT * FROM mesas WHERE id_mesa = :id_mesa";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':id_mesa', $id_mesa);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // Actualizar una mesa
+    public function actualizarMesa($id_mesa, $n_mesa, $capacidad_mesa, $descripcion_mesa) {
+        $query = "UPDATE mesas SET n_mesa = :n_mesa, capacidad_mesa = :capacidad_mesa, descripcion_mesa = :descripcion_mesa WHERE id_mesa = :id_mesa";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':n_mesa', $n_mesa);
+        $stmt->bindParam(':capacidad_mesa', $capacidad_mesa);
+        $stmt->bindParam(':descripcion_mesa', $descripcion_mesa);
+        $stmt->bindParam(':id_mesa', $id_mesa);
+        return $stmt->execute();
+    }
+
+    // Eliminar una mesa
+    public function eliminarMesa($id_mesa) {
+        $stmt = $this->db->prepare("DELETE FROM mesas WHERE id_mesa = :id_mesa");
+        $stmt->bindParam('id_mesa', $id_mesa);
+        return $stmt->execute();
+    }
 }
