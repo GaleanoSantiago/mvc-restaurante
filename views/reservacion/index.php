@@ -109,7 +109,7 @@
                                         <input type="hidden" name="id_mesa" value="<?= $row['id_mesa']?>">
                                         <input type="hidden" name="id_estado" value="<?= $row['id_estado']?>">
 
-                                        <input type="submit" class="btn btn-outline-danger btn-delete" value="Editar">
+                                        <input type="submit" class="btn btn-outline-success" value="Editar">
                                     </form>
                                 </td>
                             <?php endif; ?> 
