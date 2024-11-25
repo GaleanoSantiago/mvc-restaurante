@@ -56,7 +56,7 @@
                             <th>Numero de Mesa</th>
                             <th>Capacidad de Mesa</th>
                             <th>Estado</th>
-                            <?php if(isset($_SESSION['id_rol']) &&  $_SESSION['id_rol'] == 1):?>
+                            <?php if($_SESSION['id_rol'] == 1):?>
                                 <th colspan="3">Funciones</th>
                             <?php endif; ?> 
                         </tr>

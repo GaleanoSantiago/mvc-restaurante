@@ -49,7 +49,9 @@
                             <th>Nombre y Apellido</th>
                             <th>DNI</th>
                             <th>Clave de Acceso</th>
+                            <?php if($_SESSION['id_rol'] == 1):?>
                             <th colspan="">Funciones</th>
+                            <?php endif; ?> 
                         </tr>
                     </thead>
                     <tbody>
@@ -62,7 +64,8 @@
                             <td><?= $row['nombre_cliente'] ." ". $row['apellido_cliente']?></td>
                             <td><?= $row['dni_cliente']?></td>
                             <td><?= $row['clave_acceso_cliente']?></td>
-                            
+
+                            <?php if($_SESSION['id_rol'] == 1):?>
                             <td colspan="" class="d-flex justify-content-around">
                                 <a href="./edit.php?id=<?= $row['id_cliente'];?>" class="btn btn-outline-primary">Editar</a>
 
@@ -73,6 +76,7 @@
                                 </form>
 
                             </td>
+                            <?php endif; ?> 
                         </tr>
                         <?php endforeach; ?>
                         
