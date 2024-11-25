@@ -38,4 +38,15 @@ class ClienteController {
         return $this->model->create($dataCliente);
 
     }
+
+    public function edit() {
+        
+        $data = [
+            'nombre' => $_POST['nombre'],
+            'apellido' => $_POST['apellido'],
+            'id_cliente' => $_POST['id_cliente']
+        ];
+        
+    return $this->model->update($data);
+    }
 }

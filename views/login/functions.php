@@ -4,6 +4,7 @@ require("../../controllers/LoginController.php");
 $userObj = new UsuarioController();
 session_start();
 
+//Iniciar sesion
 if(isset($_REQUEST['login'])){
 
     $username = $_POST['username'];
@@ -14,16 +15,17 @@ if(isset($_REQUEST['login'])){
     // die();
 
     if($users){
-
-        $_SESSION['user_name'] = $user["usuario"];
-        $_SESSION['id_rol'] = $user["id_rol"];
-
-        header("Location: ./../../views/dashboard/index.php");
+        
+        $_SESSION['user_name'] = $users["usuario"];
+        $_SESSION['id_rol'] = $users["id_rol"];
+        //header("Location: ./../../views/dashboard/index.php");
+        header("Location: ../reservacion/index.php");
     }else{
         header("Location:index.php?msg=error");
     }
 }
 
+//Cerrar sesion
 if(isset($_REQUEST["logout"])){
     session_unset();    //Limpiar session
     session_destroy();  //Destruir session
