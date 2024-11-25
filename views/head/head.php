@@ -1,8 +1,8 @@
 <?php
-    // session_start();
-    // if(empty($_SESSION['usuario'])){
-    //     header("Location:./../../views/login/index.php");
-    // }
+     session_start();
+    if(empty($_SESSION['user_name'])){
+        header("Location:./../../views/login/index.php");
+    } 
     
 ?>
 

@@ -1,9 +1,11 @@
 <?php
 
     require_once("./../head/head.php");
-    // if($_SESSION['id_rol_usuario']!=1){
-    //     header('Location:./../dashboard/index.php');
-    // }
+    if($_SESSION['id_rol']!=1){
+    //  header('Location:./../dashboard/index.php');
+        header("Location: ../reservacion/index.php");
+    }
+
     require_once("./../../controllers/LoginController.php");
     $obj = new UsuarioController();
     $roles_usuario = $obj->getRoles();

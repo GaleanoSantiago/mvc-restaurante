@@ -48,5 +48,16 @@ Class Cliente{
     
         return $id_cliente;
     }
+
+
+    public function update($dataCliente) {
+
+        $stmt = $this->db->prepare("UPDATE clientes SET nombre_cliente= :nombre, apellido_cliente= :apellido 
+        WHERE id_cliente = :id_cliente
+        ");
+    
+        return  $stmt->execute($dataCliente);
+    }
+
     
 }

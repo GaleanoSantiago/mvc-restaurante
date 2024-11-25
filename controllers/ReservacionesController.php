@@ -72,21 +72,19 @@ class ReservacionController {
 
     }  
 
-    public function edit($id) {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $data = [
-                'id_cliente' => $_POST['id_cliente'],
-                'id_estado' => $_POST['id_estado'],
-                'numero_personas' => $_POST['numero_personas'],
-                'fecha_reservacion' => date('Y-m-d'),
-                'id_mesa' => $_POST['id_mesa']
-            ];
-            $this->model->update($id, $data);
-            //header('Location: /usuarios');
-        } else {
-            $usuario = $this->model->getById($id);
-            //require_once 'views/usuarios/edit.php';
-        }
+    public function edit() {
+        
+        $data = [
+            'id_cliente' => $_POST['id_cliente'],
+            'id_reservacion' => $_POST['id_reservacion'],
+            'numero_personas' => $_POST['numero_personas'],
+            'id_estado' => $_POST['id_estado'],
+            'id_mesa' => $_POST['id_mesa'],
+            'fecha_reservacion' => $_POST['fecha_reserva']
+        ];
+        
+        // Retorna el id_cliente
+    return $this->model->update($data);
     }
 
     function updateEstadoReserva($id_reservacion, $id_estado_reserva){

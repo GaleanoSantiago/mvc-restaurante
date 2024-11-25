@@ -33,10 +33,13 @@ if(isset($_REQUEST["createKey"])){
 
 
 if(isset($_REQUEST["updateReserva"])){
+    require("../../controllers/ClienteController");
+    $ClienteObj = new ClienteController();
+    $response2 = $ClienteObj->edit();
+    $response1 = $ReservacionObj->edit();
+    
 
-    $response=$ReservacionObj->edit();
-
-    if($response != false){
+    if($response1 != false && $response2 != false){
 
         header("Location:create.php?msg=userGuard");
 

@@ -2,10 +2,6 @@
 <?php
     require_once("./../head/head.php");
 
-    // if($_SESSION['id_rol_usuario']!=1){
-    //     header('Location:./../dashboard/index.php');
-    // }
-
     require_once("./../../controllers/ReservacionesController.php");
     $obj= new ReservacionController();
     $rows = $obj->index();
@@ -53,7 +49,9 @@
                             <th>Numero de Mesa</th>
                             <th>Capacidad de Mesa</th>
                             <th>Estado</th>
-                            <th colspan="3">Funciones</th>
+                            <?php if(isset($_SESSION['id_rol']) &&  $_SESSION['id_rol'] == 1):?>
+                                <th colspan="3">Funciones</th>
+                            <?php endif; ?> 
                         </tr>
                     </thead>
                     <tbody>
@@ -86,13 +84,35 @@
                                 </select>
                                 </form>
                             </td>
-                            <td>
-                                <form action="./functions.php" method="POST">
-                                    <input type="hidden" name="deleteUsuario">
-                                    <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
-                                    <input type="submit" class="btn btn-outline-danger btn-delete" value="Borrar">
-                                </form>
-                            </td>
+                            <?php if(isset($_SESSION['id_rol']) &&  $_SESSION['id_rol'] == 1):?>
+                                <td>
+                                    <form action="./functions.php" method="POST">
+                                        <input type="hidden" name="deleteUsuario">
+                                        <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
+                                        <input type="submit" class="btn btn-outline-danger btn-delete" value="Borrar">
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action="./edit.php" method="POST">
+                                        <input type="hidden" name="updateReserva">
+
+                                        <!--Envio para modificar cliente-->
+                                        <input type="hidden" name="id_cliente" value="<?= $row['id_cliente']?>">
+                                        <input type="hidden" name="nombre_cliente" value="<?= $row['nombre_cliente']?>">
+                                        <input type="hidden" name="apellido_cliente" value="<?= $row['apellido_cliente']?>">
+
+                                         <!--Envio para modificar Reservacion-->
+                                        <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
+                                        <input type="hidden" name="numero_personas" value="<?= $row['numero_personas']?>">
+                                        <input type="hidden" name="n_mesa" value="<?= $row['n_mesa']?>">
+                                        <input type="hidden" name="capacidad_mesa" value="<?= $row['capacidad_mesa']?>">
+                                        <input type="hidden" name="id_mesa" value="<?= $row['id_mesa']?>">
+                                        <input type="hidden" name="id_estado" value="<?= $row['id_estado']?>">
+
+                                        <input type="submit" class="btn btn-outline-success" value="Editar">
+                                    </form>
+                                </td>
+                            <?php endif; ?> 
                         </tr>
                         <?php endforeach; ?>
                         

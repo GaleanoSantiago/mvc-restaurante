@@ -10,7 +10,7 @@ class Reservacion {
 
     //Llama a todo los datos reservacion
     public function getAll() {
-        $stmt = $this->db->prepare("SELECT r.id_reservacion, r.fecha_reservacion, r.numero_personas, c.nombre_cliente, c.apellido_cliente, c.id_cliente, m.n_mesa, m.capacidad_mesa, e.estado_reservacion 
+        $stmt = $this->db->prepare("SELECT r.id_reservacion, r.fecha_reservacion, r.numero_personas, c.nombre_cliente, c.apellido_cliente, c.id_cliente,m.id_mesa ,m.n_mesa, m.capacidad_mesa, e.estado_reservacion, e.id_estado 
         FROM reservaciones r 
         INNER JOIN clientes c on c.id_cliente = r.id_cliente
         INNER JOIN mesas m on m.id_mesa = r.id_mesa
@@ -73,16 +73,18 @@ class Reservacion {
     }
     
 
-    public function update($id, $data) {
-        $stmt = $this->db->prepare("UPDATE usuarios SET nombre = :nombre, apellido = :apellido, email = :email, telefono = :telefono, usuario = :usuario, contrasena = :contrasena, id_rol = :id_rol WHERE id_usuario = :id");
-        $data['id'] = $id;
+    public function update($data) {
+        $stmt = $this->db->prepare("UPDATE reservaciones SET id_cliente= :id_cliente,
+        fecha_reservacion= :fecha_reservacion ,id_estado= :id_estado ,numero_personas= :numero_personas, id_mesa= :id_mesa 
+        WHERE id_reservacion = : id_reservacion"
+        );
         return $stmt->execute($data);
     }
 
     // Actualizar estado de consulta
     function updateEstadoReservaModel($id_reservacion, $id_estado_reserva){
     $stmt = $this->db->prepare(
-        "UPDATE `reservaciones` SET id_estado= :id_estado_reserva WHERE id_reservacion = :id_reservacion"
+        "UPDATE reservaciones SET id_estado= :id_estado_reserva WHERE id_reservacion = :id_reservacion"
     );
      // Vincular parámetros
      $stmt->bindParam(':id_reservacion', $id_reservacion, PDO::PARAM_INT);
