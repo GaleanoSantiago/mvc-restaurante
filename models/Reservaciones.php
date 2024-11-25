@@ -76,7 +76,7 @@ class Reservacion {
     public function update($data) {
         $stmt = $this->db->prepare("UPDATE reservaciones SET id_cliente= :id_cliente,
         fecha_reservacion= :fecha_reservacion ,id_estado= :id_estado ,numero_personas= :numero_personas, id_mesa= :id_mesa 
-        WHERE id_reservacion = : id_reservacion"
+        WHERE id_reservacion = :id_reservacion"
         );
         return $stmt->execute($data);
     }

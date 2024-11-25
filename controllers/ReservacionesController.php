@@ -78,12 +78,12 @@ class ReservacionController {
             'id_cliente' => $_POST['id_cliente'],
             'id_reservacion' => $_POST['id_reservacion'],
             'numero_personas' => $_POST['numero_personas'],
-            'id_estado' => $_POST['id_estado'],
+            'id_estado' => $_POST['estado_reserva'],
             'id_mesa' => $_POST['id_mesa'],
-            'fecha_reservacion' => $_POST['fecha_reserva']
+            'fecha_reservacion' => $_POST['fecha_reservacion']
         ];
         
-        // Retorna el id_cliente
+        // Retorna
     return $this->model->update($data);
     }
 

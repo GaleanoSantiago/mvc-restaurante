@@ -2,6 +2,16 @@
 
     require_once("./../head/head.php");
 
+    //Mesas 
+    require_once("./../../controllers/MesaController.php");
+    $mesasObj = new MesaController();
+    $mesa = $mesasObj->getMesasReservacionesLibres();
+
+    //Estado reservacion
+    require_once("./../../controllers/ReservacionesController.php");
+    $obj= new ReservacionController();
+    $estado_reserva = $obj->indexEstadoReservacion(); 
+
 ?>
 <section>
         <div class="container d-flex flex-column align-items-center">
@@ -20,25 +30,12 @@
             <input type="hidden" id="inputHidden" name="updateReserva">
             <div class="row  justify-content-center">
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 column-first">
+
                     <!-- Campos de Invisibles -->
-
-                 <!--Envio para modificar cliente-->
-                 <input type="hidden" name="id_cliente" value="<?= $row['id_cliente']?>">
-                                        <input type="hidden" name="nombre_cliente" value="<?= $row['nombre_cliente']?>">
-                                        <input type="hidden" name="apellido_cliente" value="<?= $row['apellido_cliente']?>">
-
-                                         <!--Envio para modificar Reservacion-->
-                                        <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
-                                        <input type="hidden" name="numero_personas" value="<?= $row['numero_personas']?>">
-                                        <input type="hidden" name="n_mesa" value="<?= $row['n_mesa']?>">
-                                        <input type="hidden" name="capacidad_mesa" value="<?= $row['capacidad_mesa']?>">
-                                        <input type="hidden" name="id_mesa" value="<?= $row['id_mesa']?>">
-                                        <input type="hidden" name="id_estado" value="<?= $row['id_estado']?>">
-                    
-                    
                     <div class="">
-                        <input id="id_cliente" name="id_cliente" class="form-control" type="hidden" <?= $_POST['id_cliente'] ?> >
-                        <input id="fecha_reserva" name="fecha_reserva" type="hidden" value="<?= date('Y-m-d H:i:s')?>" />
+                        <input id="id_cliente" name="id_cliente" class="form-control" type="hidden" value="<?= $_POST['id_cliente'] ?>" >
+                        <input id="fecha_reservacion" name="fecha_reservacion" type="hidden" value="<?= date('Y-m-d H:i:s')?>" />
+                        <input type="hidden" name="id_reservacion" value="<?= $_POST['id_reservacion']?>">
                     </div>
               
                     <!-- Campo de Nombre -->
@@ -52,11 +49,7 @@
                         <label for="apellido" class="form-label">Apellido</label>
                         <input type="text" name="apellido" id="apellido" value="<?= $_POST['apellido_cliente'] ?>" class="form-control inputFirst" required>
                     </div>
-                <!-- Campo de dni -->
-                <div class="mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="number" name="dni" id="dni" class="form-control inputFirst" required>
-                    </div>
+               
                 </div>
 
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12">
@@ -64,8 +57,15 @@
                     <!-- ID Mesa-->
                     <div class="mb-3">
                         <label for="id_mesa" class="form-label">Mesa</label>
-                        <select name="id_mesa" id="id_mesa" class="form-select text-center id_mesa" style="color:#fff;">
-                            <option value=""></option>
+                        <select name="id_mesa" id="id_mesa" class="form-select text-center id_mesa">
+                            <?php foreach($mesa as $detallesMesa) :?> 
+                                <option value="<?= $detallesMesa['id_mesa'] ?>" data-capacidad="<?= $detallesMesa['capacidad_mesa'] ?>"
+                                    <?php if($detallesMesa['n_mesa']==$_POST['n_mesa']): ?> 
+                                        selected 
+                                    <?php endif; ?> 
+        
+                                        ><?= 'Mesa N° '. $detallesMesa['n_mesa'] . ' con capacidad de '. $detallesMesa['capacidad_mesa'] . ' Personas' ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
 
@@ -75,18 +75,18 @@
                         <input type="number" name="numero_personas" id="numero_personas" value="<?= $_POST['numero_personas'] ?>" class="form-control" max="<?= $_POST['numero_personas']; ?>" required>
                     </div>
             
-                 <!-- Codigo de acceso -->
-                 <div class="mb-3">
-                        <label for="clave_acceso" class="form-label">Codigo de acceso</label>
-
-                        <div class="form-pass-div d-flex gap-1">
-                            <input type="text" name="clave_acceso"  id="input_clave" class="form-control" required>
-                            <button type="button" id="btn_clave">
-                                <span>
-                                    x
-                                </span>
-                            </button>
-                        </div>
+                    <!-- Estado de Reservaion -->
+                    <div class="mb-3">
+                        <label for="estado_reserva" class="form-label">Estado de Reservacion</label>
+                        <select name="estado_reserva" id="estado_reserva" class="form-select text-center estado_reserva" style="">
+                            <?php foreach($estado_reserva as $estado) :?> 
+                                <option  value="<?= $estado["id_estado"]?>"
+                                    <?php if($estado["id_estado"]==$_POST['id_estado']): ?> 
+                                        selected 
+                                    <?php endif; ?> 
+                                        ><?= $estado["estado_reservacion"]?></option>
+                            <?php endforeach;?>
+                        </select>
                     </div>    
                 <!-- Botones -->
                 <div class="col-12">

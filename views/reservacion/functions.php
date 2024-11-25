@@ -2,6 +2,7 @@
 
 require("../../controllers/ReservacionesController.php");
 $ReservacionObj = new ReservacionController();
+$ClienteObj = new ClienteController();
 
 if(isset($_REQUEST["create"])){
     
@@ -33,15 +34,13 @@ if(isset($_REQUEST["createKey"])){
 
 
 if(isset($_REQUEST["updateReserva"])){
-    require("../../controllers/ClienteController");
-    $ClienteObj = new ClienteController();
     $response2 = $ClienteObj->edit();
     $response1 = $ReservacionObj->edit();
-    
+   
 
     if($response1 != false && $response2 != false){
 
-        header("Location:create.php?msg=userGuard");
+        header("Location:index.php?msg=userGuard");
 
     }
 }

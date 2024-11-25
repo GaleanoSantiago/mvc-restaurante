@@ -18,4 +18,9 @@ class MesaController {
         $mesas = $this->model->getMesasReservaciones();
         return $mesas;
     }
+
+    public function getMesasReservacionesLibres(){
+        $mesas = $this->model->getMesasReservacionesLibres();
+        return $mesas;
+    }
 }

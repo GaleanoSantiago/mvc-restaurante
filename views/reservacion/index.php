@@ -13,7 +13,14 @@
     <section>
         <div class="container" >
             <h1 class="text-center">Reservaciones</h1>
-            
+
+            <?php if(isset($_GET["msg"]) && $_GET["msg"]=="userGuard"): ?>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>Reservación</strong> actualizada con exito en la base de datos.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+
             <div class="mb-3 d-flex justify-content-around">
                 <?php #if($_SESSION['id_rol_usuario']==1): ?>
                     <a href="../frontend/index.php" class="btn btn-success">Agregar Nueva Reservacion</a>
@@ -29,7 +36,7 @@
                     <button id="exportExcel" class="btn btn-outline-success">Exportar a Excel</button>
                 </div>
             </div>
-            <?php if(isset($_GET["msg"])=="elimSuccs"): ?>
+            <?php if(isset($_GET["msg"]) && $_GET["msg"]=="elimSuccs"): ?>
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
                     <strong>Reservacion</strong> eliminado con exito de la base de datos.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -84,7 +91,7 @@
                                 </select>
                                 </form>
                             </td>
-                            <?php if(isset($_SESSION['id_rol']) &&  $_SESSION['id_rol'] == 1):?>
+                            <?php if($_SESSION['id_rol'] == 1):?>
                                 <td>
                                     <form action="./functions.php" method="POST">
                                         <input type="hidden" name="deleteUsuario">
