@@ -6,21 +6,21 @@
     //     header('Location:./../dashboard/index.php');
     // }
 
-    require_once("./../../controllers/ReservacionesController.php");
-    $obj= new ReservacionController();
+    require_once("./../../controllers/ClienteController.php");
+    $obj= new CLienteController();
     $rows = $obj->index();
-    $estado_reserva = $obj->indexEstadoReservacion();  
+    // $estado_reserva = $obj->indexEstadoReservacion();  
     // var_dump($rows);
     // die();
 ?>
     
     <section>
         <div class="container" >
-            <h1 class="text-center">Reservaciones</h1>
+            <h1 class="text-center">Clientes</h1>
             
             <div class="mb-3 d-flex justify-content-around">
                 <?php #if($_SESSION['id_rol_usuario']==1): ?>
-                    <a href="../frontend/index.php" class="btn btn-success">Agregar Nueva Reservacion</a>
+                    <a href="./create.php" class="btn btn-success">Agregar Nuevo Cliente</a>
                 <?php #endif; ?>
 
                 
@@ -35,7 +35,7 @@
             </div>
             <?php if(isset($_GET["msg"])=="elimSuccs"): ?>
                 <div class="alert alert-success alert-dismissible fade show w-100" role="alert">
-                    <strong>Reservacion</strong> eliminado con exito de la base de datos.
+                    <strong>Cliente</strong> almacenado con exito de la base de datos.
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php else: ?>
@@ -45,15 +45,11 @@
                 <table class="table table-striped table-hover table-bordered" id="myTable">
                     <thead class="">
                         <tr>			
-                            <th>ID Reservacion</th>
                             <th>ID Cliente</th>
-                            <th>Cliente</th>
-                            <th>Fecha Reservacion</th>
-                            <th>Numero de Personas</th>
-                            <th>Numero de Mesa</th>
-                            <th>Capacidad de Mesa</th>
-                            <th>Estado</th>
-                            <th colspan="3">Funciones</th>
+                            <th>Nombre y Apellido</th>
+                            <th>DNI</th>
+                            <th>Clave de Acceso</th>
+                            <th colspan="">Funciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,36 +58,20 @@
                         
                         foreach($rows as $row): ?>
                         <tr>
-                            <td><?= $row['id_reservacion']?></td>
                             <td><?= $row['id_cliente']?></td>
                             <td><?= $row['nombre_cliente'] ." ". $row['apellido_cliente']?></td>
-                            <td><?= $row['fecha_reservacion']?></td>
-                            <td><?= $row['numero_personas']?></td>
-                            <td><?= $row['n_mesa']?></td>
-                            <td><?= $row['capacidad_mesa']?></td>
-                            <td>
-                                <form action="./functions.php" method="POST" style="width:100%;">
-                                    <input type="hidden" name="cambiarEstado">
-                                    
-                                    <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
-                                
-                                    <select name="estado_reserva" id="estado_reserva" class="form-select text-center estado_reserva" style="">
-                                    <?php foreach($estado_reserva as $estado) :?> 
-                                        <option  value="<?= $estado["id_estado"]?>"
-                                        <?php if($estado["estado_reservacion"]==$row['estado_reservacion']): ?> 
-                                            selected 
-                                        <?php endif; ?> 
-                                    ><?= $estado["estado_reservacion"]?></option>
-                                <?php endforeach;?>
-                                </select>
-                                </form>
-                            </td>
-                            <td>
-                                <form action="./functions.php" method="POST">
-                                    <input type="hidden" name="deleteUsuario">
-                                    <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
+                            <td><?= $row['dni_cliente']?></td>
+                            <td><?= $row['clave_acceso_cliente']?></td>
+                            
+                            <td colspan="" class="d-flex justify-content-around">
+                                <a href="./edit.php?id=<?= $row['id_cliente'];?>" class="btn btn-outline-primary">Editar</a>
+
+                                <form action="./functions.php" method="POST" style="width:fit-content;">
+                                    <input type="hidden" name="delete">
+                                    <input type="hidden" name="id_cliente" value="<?= $row['id_cliente']?>">
                                     <input type="submit" class="btn btn-outline-danger btn-delete" value="Borrar">
                                 </form>
+
                             </td>
                         </tr>
                         <?php endforeach; ?>

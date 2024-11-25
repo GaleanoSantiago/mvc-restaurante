@@ -13,7 +13,13 @@ class ClienteController {
         $clientes = $this->model->getAll();
         return $clientes;
     }
-    
+    public function getById() {
+        $id = $_REQUEST["id"];
+        $cliente = $this->model->getById($id);
+        // var_dump($cliente);
+        // die();
+        return $cliente;
+    }
     //Llamar a todas las reservaciones
     public function getByClave() {
         $key = $_POST["clave_acceso"];

@@ -274,8 +274,8 @@ if(selectPacientes){
 
 // Seleccionar todos los elementos con la clase "estado_consulta"
 // Seleccionar todos los elementos con la clase "estado_consulta"
-const selectEstadoConsultas = document.querySelectorAll(".estado_reserva") || null;
-
+const selectEstado = document.querySelectorAll(".estado_reserva") || null;
+// console.log(selectEstado);
 const btnDiagnostico = document.querySelectorAll(".btn-diagnostico") || null;
 const inputIdConsulta = document.getElementById("inputIdConsulta") || null; 
 const descripcionDiagnostico = document.getElementById("descripcionDiagnostico") || null;
@@ -290,7 +290,7 @@ if (btnDiagnostico) {
             const idConsulta = btn.value;
             inputIdConsulta.value = idConsulta;
 
-            fetch(`functions.php?id_consulta=${idConsulta}`)
+            fetch(`functions.php?id_reservacion=${idConsulta}`)
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
@@ -360,10 +360,10 @@ if(updateBtn){
 function setOptionColors(selectEstadoConsulta) {
     const options = selectEstadoConsulta.options;
     if (options.length > 0) {
-        options[0].classList.add("bg-warning", "text-white");
-        options[1].classList.add("bg-success", "text-white");
-        options[2].classList.add("bg-secondary", "text-white");
-        options[3].classList.add("bg-danger", "text-white");
+        options[0].classList.add("bg-success", "text-white");
+        options[1].classList.add("bg-warning", "text-white");
+        options[2].classList.add("bg-orange", "text-white");
+        // options[3].classList.add("bg-danger", "text-white");
     }
     // Encuentra el botón cercano al select
     const btnDiagnostico = selectEstadoConsulta.closest('tr').querySelector('.btn-diagnostico') || null;
@@ -396,10 +396,9 @@ function handleSelectChange(event) {
     }
 }
 
-if(selectEstadoConsultas){
-
+if(selectEstado){
     // Aplicar colores de fondo y actualizar el color al cargar la página para cada select
-    selectEstadoConsultas.forEach(selectEstadoConsulta => {
+    selectEstado.forEach(selectEstadoConsulta => {
         setOptionColors(selectEstadoConsulta);
         updateSelectColor({ target: selectEstadoConsulta }); // Para aplicar el color inicial
         selectEstadoConsulta.addEventListener("change", updateSelectColor);

@@ -1,19 +1,19 @@
 <?php
 
-require("../../controllers/ReservacionesController.php");
-$ReservacionObj = new ReservacionController();
+require("../../controllers/ClienteController.php");
+$obj = new ClienteController();
 
 if(isset($_REQUEST["create"])){
     
-    $response=$ReservacionObj->create();
+    $response=$obj->create();
 
     if($response != false){
 
-        header("Location:./../frontend/index.php?msg=succs");
+        header("Location:create.php?msg=succs");
 
     }
 }
-
+// =========================================== Funciones que no se usan =============================================
 if(isset($_REQUEST["createKey"])){
 
     $clienteObj = new ClienteController();
@@ -25,7 +25,7 @@ if(isset($_REQUEST["createKey"])){
     // die();
     if($respuesta != false){
 
-        header("Location:./../frontend/index.php?msg=succs");
+        header("Location:create.php?msg=succs");
 
     }
 }
