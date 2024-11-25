@@ -21,6 +21,19 @@ class ReservacionController {
         return $reservacion;
     }
 
+    public function getByClave(){
+        // Recibe los datos post del cliente
+        $dataCliente = [
+            'dni' => $_POST['dni'],
+            'clave' => $_POST['clave']
+        ];
+        // var_dump($dataCliente);
+        // die();
+        // Ejecuta la busqueda por clave y dni
+        $reservaciones = $this->model->getByClave($dataCliente);
+        return $reservaciones;
+    }
+
     public function create() {
         
             // $dataCliente = [

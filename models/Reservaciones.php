@@ -39,6 +39,26 @@ class Reservacion {
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    
+    public function getByClave($dataClientes) {
+        // Preparar la consulta
+        $stmt = $this->db->prepare("SELECT r.id_reservacion, r.fecha_reservacion, r.numero_personas, 
+            c.nombre_cliente, c.dni_cliente, c.apellido_cliente, c.id_cliente, c.clave_acceso_cliente, 
+            m.n_mesa, m.capacidad_mesa, e.estado_reservacion, e.id_estado 
+            FROM reservaciones r
+            INNER JOIN clientes c ON c.id_cliente = r.id_cliente 
+            INNER JOIN mesas m ON m.id_mesa = r.id_mesa 
+            INNER JOIN estados_reservacion e ON e.id_estado = r.id_estado 
+            WHERE c.clave_acceso_cliente = :clave 
+            AND c.dni_cliente = :dni;
+        ");
+    
+        // Ejecutar la consulta con el array asociativo
+        $stmt->execute($dataClientes);
+    
+        // Retornar todos los registros encontrados
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 
     public function create($dataReserva) {    
     

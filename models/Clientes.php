@@ -13,6 +13,16 @@ Class Cliente{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM clientes WHERE id_cliente = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        $stmt->execute();
+        $cliente = $stmt->fetch(PDO::FETCH_ASSOC); // Devuelve un único registro coincidente
+        // var_dump($cliente);
+        // die();
+        return $cliente;
+    }
     public function getByClave($clave) {
         $stmt = $this->db->prepare("SELECT * FROM clientes WHERE clave_acceso_cliente = :clave");
         $stmt->bindParam(':clave', $clave, PDO::PARAM_STR); // Cambiado a PDO::PARAM_STR

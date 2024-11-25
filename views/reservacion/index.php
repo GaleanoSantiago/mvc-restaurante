@@ -70,10 +70,10 @@
                             <td>
                                 <form action="./functions.php" method="POST" style="width:100%;">
                                     <input type="hidden" name="cambiarEstado">
-                                                               
+                                    
                                     <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
                                 
-                                    <select name="estado_reserva" id="estado_reserva" class="form-select text-center estado_reserva" style="color:#fff;" onchange="this.form.submit()">
+                                    <select name="estado_reserva" id="estado_reserva" class="form-select text-center estado_reserva" style="">
                                     <?php foreach($estado_reserva as $estado) :?> 
                                         <option  value="<?= $estado["id_estado"]?>"
                                         <?php if($estado["estado_reservacion"]==$row['estado_reservacion']): ?> 
@@ -126,92 +126,8 @@
             </div>
         </div>
     </section>
-  
-    <style>
-        #estado_reserva option {
-            padding: 30px 0 !important;
-        }
-    </style>
 
-    <script>
-        const btnDiagnostico = document.querySelectorAll(".btn-diagnostico") || null;
 
-        if (btnDiagnostico) {
-    btnDiagnostico.forEach(btn => {
-        btn.addEventListener("click", () => {
-            const idConsulta = btn.value;
-            inputIdConsulta.value = idConsulta;
-            
-            fetch(`functions.php?id_reservacion=${idConsulta}`)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data);
-                    if (data.success) {
-
-                        descripcionDiagnostico.value = data.descripcion_diagnostico;
-                        notasAdicionales.value = data.notas_adicionales;
-                        descripcionDiagnostico.disabled=true;
-                        notasAdicionales.disabled=true;
-                        btnEnviarModal.disabled=true;
-
-                        updateDiv.classList.remove("d-none");
-
-                    } else {
-                        descripcionDiagnostico.value = '';
-                        notasAdicionales.value = '';
-                        descripcionDiagnostico.disabled=false;
-                        notasAdicionales.disabled=false;
-                        btnEnviarModal.disabled=false;
-                        if (!updateDiv.classList.contains("d-none")) {
-                            updateDiv.classList.add("d-none");
-                        }
-                    }
-                })
-                .catch(error => console.error('Error:', error));
-        });
-    });
-}
-        document.addEventListener("DOMContentLoaded", () => {
-    const selectEstadoReservas = document.querySelectorAll(".estado_reserva");
-
-    if (selectEstadoReservas.length > 0) {
-        selectEstadoReservas.forEach(selectEstado => {
-            setOptionColors(selectEstado);
-            updateSelectColor({ target: selectEstado });
-
-            selectEstado.addEventListener("change", updateSelectColor);
-            selectEstado.addEventListener("change", handleSelectChange);
-        });
-    } else {
-        console.warn("No se encontraron elementos con la clase 'estado_reserva'.");
-    }
-});
-
-function setOptionColors(selectEstado) {
-    const options = selectEstado.options;
-
-    if (options.length > 0) {
-        if (options[0]) options[0].classList.add("bg-danger", "text-white");
-        if (options[1]) options[1].classList.add("bg-warning", "text-white");
-        if (options[2]) options[2].classList.add("bg-success", "text-white");
-    }
-}
-
-function updateSelectColor(event) {
-    const selectEstado = event.target;
-    const selectedOption = selectEstado.options[selectEstado.selectedIndex];
-
-    if (selectedOption) {
-        const bgColorClass = selectedOption.className.split(' ')[0];
-        selectEstado.className = 'form-select text-center ' + bgColorClass;
-    }
-}
-
-function handleSelectChange(event) {
-    console.log("Opción seleccionada:", event.target.value);
-}
-    </script>
-   
 <?php
     require_once("./../head/footer.php");
 ?>
