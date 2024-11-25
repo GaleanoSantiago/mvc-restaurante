@@ -17,10 +17,14 @@ class Usuario {
 
         $stmt = $this->db->prepare("
             SELECT 
-                u.id_usuario, 
+                u.id_usuario,
+                u.nombre, 
+                u.apellido, 
                 u.usuario, 
                 u.contrasena, 
                 u.id_rol, 
+                u.email, 
+                u.fecha_registro, 
                 r.nombre_rol
             FROM usuarios u
             INNER JOIN roles_usuarios r ON u.id_rol = r.id_rol
