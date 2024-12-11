@@ -457,8 +457,8 @@ footer a:hover{
     display:flex;
     flex-direction:column;
     gap:5px;
-    width:200px;
-    height:200px;
+    width:180px;
+    height:180px;
     border-radius:20px;
     /* background:var(--bs-light); */
     color:var(--bs-light);
@@ -515,11 +515,48 @@ footer a:hover{
     border:1px solid var(--bs-border-color);
     border-radius:10px;
 }
+.contexto-color{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
+}
+.contexto{
+    border:1px solid #ddd;
+}
+.contexto{
+    /* padding:1px 100px; */
+    display:flex;
+    border-radius:10px;
+    overflow:hidden;
+}
+.contexto-texto{
+    width:30%;
+    padding:5px;
+    border-right: #ddd;
+}
+.libre-color{
+    background:var(--bs-success);
+    color:var(--bs-success);
+    width:70%;
+}
+.pendiente-color{
+    color:var(--bs-warning);
+    background:var(--bs-warning);
+    width:70%;
+
+}
+.ocupado-color{
+    color:#FD7E14;
+    background:#FD7E14;
+    width:70%;
+}
+
 .div-descripcion h3{
     border-bottom:1px solid var(--bs-border-color);
     
 }
 .descripcion-body{
+    padding-top:15px;
     min-height:400px;
 }
 .side-descripcion{

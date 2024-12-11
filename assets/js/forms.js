@@ -422,3 +422,22 @@ const fechaActual = `${yyyy}-${mm}-${dd}`;
 const fechaInput = document.getElementById('filtroFecha') || null;
 
 // fechaInput.value = fechaActual;
+
+// Seleccionar todos los botones con la clase .btn-action
+const actionButtons = document.querySelectorAll(".btn-action") || null;
+if(actionButtons){
+    actionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Obtener el <td> con la clase .btn-funciones correspondiente a esta fila
+            const parentRow = button.closest("tr"); // Encuentra la fila (<tr>)
+            const funcionesCell = parentRow.querySelector(".btn-funciones"); // Selecciona el <td> .btn-funciones dentro de esa fila
+
+            // Obtener el contenido del .btn-funciones
+            const funcionesContent = funcionesCell.innerHTML;
+
+            // Insertar el contenido en el .modal-body
+            const modalBody = document.querySelector("#exampleModal .modal-contenido");
+            modalBody.innerHTML = funcionesContent;
+        });
+    });
+}
