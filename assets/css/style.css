@@ -88,13 +88,18 @@
     --comb3: #001966;
     --comb4: #eef3ff;
 
+    /* --main: #FFB87A; */
+    --main: #faa65c;
+    --fondo: #FFF0C9;
+
     --gradient-1:linear-gradient(to bottom right, #f3d661, #f2c84d, #f5c043);
 
     --bs-border: #dee2e6;
 }
 body{
     font-family: sans-serif;
-    scroll-behavior: smooth;    
+    scroll-behavior: smooth;
+    background:var(--fondo);
     /* background:var(--bs-light); */
 }
 
@@ -127,7 +132,7 @@ nav.navbar, nav .dropdown-menu, nav .dropdown-menu.show{
     /* background: #4682B4; */
     /* background: #7B68EE; */
     /* background:#6A5ACD; */
-    background:var(--blueBright);
+    background:var(--main);
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     color:var(--bs-light) !important;
 }
@@ -159,7 +164,7 @@ nav form button{
     /* border:1px solid var(--bs-light) !important; */
 }
 thead{
-    background:var(--blueBright) !important;
+    background:var(--main) !important;
     color:#fff;
 }
 /* ----------------------------- Index.php Login ------------------------------- */
@@ -401,7 +406,7 @@ thead{
 .formFliltroFecha{
     padding:10px 15px;
     background:#f2f2f2;
-    /* background:var(--blueBright); */
+    /* background:var(--main); */
     border-radius:5px;
 
 }
@@ -567,7 +572,7 @@ footer a:hover{
     margin-top:30px;
     padding:20px;
     font-size:1.2rem;
-    background:var(--blueBright);
+    background:var(--main);
     color:#fff;
     border-radius:10px;
     border:none;
@@ -584,13 +589,13 @@ footer a:hover{
 }
 .btn-clienteCard:hover{
     border:1px solid var(--bs-secondary);
-    background:var(--blueBright);
+    background:var(--main);
     color:#fff;
 
 }
 .btn-clienteCard.activado{
     border:1px solid var(--bs-secondary) !important;
-    background:var(--blueBright) !important;
+    background:var(--main) !important;
     color:#fff !important;
 
 }
