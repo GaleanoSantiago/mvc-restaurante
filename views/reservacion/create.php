@@ -1,20 +1,27 @@
 <?php
 
-    require_once("./../head/head.php");
-    // if($_SESSION['id_rol_usuario']!=1){
-    //     header('Location:./../dashboard/index.php');
-    // }
-    /*
-    require_once("./../../controllers/ReservacionesController.php");
-    $obj= new ReservacionController();
-    $rows = $obj->index();
-    */
-    // var_dump($roles_usuario);
-    // die();
+    require_once("./../head/front_head.php");
+    
     $mesa = $_POST["id_mesa"] ?? 1;
     $n_mesa = $_POST["n_mesa"] ?? "";
 
 ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Mesa</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Fontawesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!-- Estilos Propios -->
+    <link rel="stylesheet" href="./../../assets/css/style.css">
+</head>
 <section>
         <div class="container d-flex flex-column align-items-center">
             <h1 class="text-center">Reservar Mesa <?= $n_mesa?></h1>

@@ -88,7 +88,7 @@
                             <?php if(isset($_SESSION['id_rol']) &&  $_SESSION['id_rol'] == 1):?>
                                 <td>
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary  btn-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn btn-outline-primary  btn-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                     Acciones
                                     </button>
                                 </td>

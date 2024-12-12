@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="./../../assets/css/style.css">
 </head>
 <body>
+    <?php
+
+        require_once("./../head/front_head.php");
+    ?>
     <section>
         <div class="container-fluid">
             
@@ -29,7 +33,6 @@
             <?php else: ?>
                 <div class=""></div>
             <?php endif; ?>
-            <a href="../login/index.php">Iniciar Sesión</a>
             
             <?php 
                 require_once("./../../controllers/MesaController.php");
@@ -40,7 +43,7 @@
                 // die();
             ?>
             <div class="row">
-                <div class="col-3 border-end">
+                <div class="col-3 left-col">
                     <div class="div-descripcion">
                         <div class="contexto-color">
                             <div class="contexto"><div class="contexto-texto">Libre</div> <div class="libre-color">x</div></div>

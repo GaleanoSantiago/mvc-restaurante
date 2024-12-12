@@ -49,7 +49,7 @@
                             <th>Nombre y Apellido</th>
                             <th>DNI</th>
                             <th>Clave de Acceso</th>
-                            <th colspan="">Funciones</th>
+                            <th colspan="2">Funciones</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,19 +57,25 @@
                         if($rows): 
                         
                         foreach($rows as $row): ?>
+                        
                         <tr>
                             <td><?= $row['id_cliente']?></td>
                             <td><?= $row['nombre_cliente'] ." ". $row['apellido_cliente']?></td>
                             <td><?= $row['dni_cliente']?></td>
                             <td><?= $row['clave_acceso_cliente']?></td>
-                            
-                            <td colspan="" class="d-flex justify-content-around">
-                                <a href="./edit.php?id=<?= $row['id_cliente'];?>" class="btn btn-outline-primary">Editar</a>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-primary  btn-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Acciones
+                                </button>
+                            </td>
+                            <td colspan=""   class="btn-funciones d-none">
+                                <a href="./edit.php?id=<?= $row['id_cliente'];?>" class="btn btn-outline-primary w-100">Editar</a>
 
-                                <form action="./functions.php" method="POST" style="width:fit-content;">
+                                <form action="./functions.php" method="POST" style="">
                                     <input type="hidden" name="delete">
                                     <input type="hidden" name="id_cliente" value="<?= $row['id_cliente']?>">
-                                    <input type="submit" class="btn btn-outline-danger btn-delete" value="Borrar">
+                                    <input type="submit" class="btn btn-outline-danger btn-delete w-100" value="Borrar">
                                 </form>
 
                             </td>
@@ -83,6 +89,26 @@
                         <?php endif; ?>
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Acciones</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-contenido d-flex justify-content-around">
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

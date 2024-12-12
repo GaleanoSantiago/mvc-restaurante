@@ -91,6 +91,9 @@
     /* --main: #FFB87A; */
     --main: #faa65c;
     --fondo: #FFF0C9;
+    --destacado:#E68642;
+    --acento: #FF7043;
+    --letra: #A05A2C;
 
     --gradient-1:linear-gradient(to bottom right, #f3d661, #f2c84d, #f5c043);
 
@@ -101,6 +104,13 @@ body{
     scroll-behavior: smooth;
     background:var(--fondo);
     /* background:var(--bs-light); */
+}
+
+h1,h2,h3,h4,h5,h6, .form-label{
+    color:var(--letra);
+}
+p{
+    color:var(--letra) !important;
 }
 
 section{
@@ -125,7 +135,7 @@ table{
     align-content:stretch;
 }
 .text-color{
-    color:var(--blueRetro);
+    color:var(--destacado);
 }
 /* ----------------------------- NavBar bootstrap ------------------------------- */
 nav.navbar, nav .dropdown-menu, nav .dropdown-menu.show{
@@ -137,7 +147,7 @@ nav.navbar, nav .dropdown-menu, nav .dropdown-menu.show{
     color:var(--bs-light) !important;
 }
 nav .dropdown-item:hover{
-    background:var(--lightBlue);
+    background:var(--destacado);
 }
 nav .nav-link{
     color:#fff !important;
@@ -169,8 +179,10 @@ thead{
 }
 /* ----------------------------- Index.php Login ------------------------------- */
 #login-body{
-    background-color:var(--azulLight);  
-
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2)), url("../img/fondo.webp");
+    background-size: cover; /* Para ajustar la imagen al tamaño del contenedor */
+    background-position: center; /* Para centrar la imagen */
+    height:100vh;
 }
 .cont-login{
     height:600px;
@@ -187,12 +199,14 @@ thead{
 }
 .login{
     width:350px;
-    border:1px solid var(--bs-gray-400);
+    border:1px solid var(--main);
     padding:30px 20px;
     border-radius:7px;
     background-color: var(--bs-white);
     /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
     box-shadow:rgba(0, 0, 0, 0.1) 0px 0px 15px ;
+    background:linear-gradient(rgba(255, 240, 201, 0.8), rgba(255, 240, 201, 0.8));
+
 
 }
 .login-user-img{
@@ -282,7 +296,7 @@ thead{
 }
 .card .card-title{
 	text-align:center;
-	color: var(--blueRetro);
+	color: var(--destacado);
     /* width:60%; */
     /* border:1px solid black; */
     /* height:fit-content; */
@@ -358,7 +372,7 @@ thead{
     border:1px solid var(--bs-gray-400);
     border-radius: 10px;
     padding: 15px 0 0 0;
-    background:var(--blueRetro);
+    background:var(--main);
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     width:400px;
     margin:auto;
@@ -462,8 +476,8 @@ footer a:hover{
     display:flex;
     flex-direction:column;
     gap:5px;
-    width:180px;
-    height:180px;
+    width:150px;
+    height:150px;
     border-radius:20px;
     /* background:var(--bs-light); */
     color:var(--bs-light);
@@ -483,9 +497,8 @@ footer a:hover{
 }
 
 .container-mesas .mesa-box.estado-3{
-    border: 10px solid #FD7E14;
+    /* border: 10px solid #FD7E14; */
     background: #FD7E14;
-
 }
 .bg-orange{
     background:#FD7E14;
@@ -502,22 +515,32 @@ footer a:hover{
 }
 
 .mesa-box .titulo-mesa{
-    font-size:3.5rem;
+    font-size:2.5rem;
+    color:#fff !important;
+
     font-weight:bold;
 }
 
 .mesa-box .estado-mesa, .mesa-box .capacidad-mesa{
     font-weight:bold;
     text-align:center;
-}
+    color:#fff !important;
 
+}
+.mesa-box form{
+    width:100% !important;
+}
+.mesa-box .btn{
+    padding:2px 10px;
+    width:100%;
+}
 .div-descripcion {
     position: sticky;
     top: 0; /* Establece cuando el elemento se vuelve sticky */
     /* z-index: 10;  */
     padding:20px 10px;
     
-    border:1px solid var(--bs-border-color);
+    border:1px solid var(--main);
     border-radius:10px;
 }
 .contexto-color{
@@ -526,7 +549,10 @@ footer a:hover{
     gap:3px;
 }
 .contexto{
-    border:1px solid #ddd;
+    border:1px solid var(--main);
+}
+.left-col{
+    border-right:1px solid var(--main);
 }
 .contexto{
     /* padding:1px 100px; */
@@ -537,7 +563,8 @@ footer a:hover{
 .contexto-texto{
     width:30%;
     padding:5px;
-    border-right: #ddd;
+    border-right: var(--main);
+    color:var(--letra);
 }
 .libre-color{
     background:var(--bs-success);
@@ -557,7 +584,7 @@ footer a:hover{
 }
 
 .div-descripcion h3{
-    border-bottom:1px solid var(--bs-border-color);
+    border-bottom:1px solid var(--main);
     
 }
 .descripcion-body{
@@ -572,7 +599,7 @@ footer a:hover{
     margin-top:30px;
     padding:20px;
     font-size:1.2rem;
-    background:var(--main);
+    background:var(--destacado);
     color:#fff;
     border-radius:10px;
     border:none;
@@ -585,16 +612,17 @@ footer a:hover{
 
 .btn-clienteCard{
     padding:20px 30px;
-    border:1px solid var(--bs-secondary);
+    border:1px solid var(--main);
+    color:var(--letra);
 }
 .btn-clienteCard:hover{
-    border:1px solid var(--bs-secondary);
+    /* border:1px solid var(--bs-secondary); */
     background:var(--main);
     color:#fff;
 
 }
 .btn-clienteCard.activado{
-    border:1px solid var(--bs-secondary) !important;
+    border:1px solid var(--main) !important;
     background:var(--main) !important;
     color:#fff !important;
 
