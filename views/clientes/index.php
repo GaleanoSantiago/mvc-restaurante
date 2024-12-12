@@ -80,7 +80,6 @@
                                 </form>
 
                             </td>
-                            <?php endif; ?> 
                         </tr>
                         <?php endforeach; ?>
                         

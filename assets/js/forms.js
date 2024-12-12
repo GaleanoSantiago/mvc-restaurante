@@ -423,26 +423,6 @@ const fechaInput = document.getElementById('filtroFecha') || null;
 
 // fechaInput.value = fechaActual;
 
-//---------------------------------Cambiar max dependiendo de id_mesa---------------------------------
-
-// Obtener el select y el campo de número
-const select = document.getElementById('id_mesa');
-const valor = document.getElementById('numero_personas');
-
-// Añadir un evento de cambio en el select
-select.addEventListener('change', function () {
-    // Obtener la capacidad de la mesa seleccionada del atributo data-capacidad
-    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
-    // Establecer el atributo max del input de número
-    valor.setAttribute('max', capacidad);
-});
-
-// Opcional: Si se desea que el valor máximo se ajuste automáticamente al cargar la página
-document.addEventListener('DOMContentLoaded', function () {
-    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
-    valor.setAttribute('max', capacidad);
-});
-
 //--------------------------------- Para mover los btn funciones a un modal  ---------------------------------
 
 // Seleccionar todos los botones con la clase .btn-action
@@ -463,3 +443,25 @@ if(actionButtons){
         });
     });
 }
+
+
+
+//---------------------------------Cambiar max dependiendo de id_mesa---------------------------------
+
+// Obtener el select y el campo de número
+const select = document.getElementById('id_mesa');
+const valor = document.getElementById('numero_personas');
+
+// Añadir un evento de cambio en el select
+select.addEventListener('change', function () {
+    // Obtener la capacidad de la mesa seleccionada del atributo data-capacidad
+    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
+    // Establecer el atributo max del input de número
+    valor.setAttribute('max', capacidad);
+});
+
+// Opcional: Si se desea que el valor máximo se ajuste automáticamente al cargar la página
+document.addEventListener('DOMContentLoaded', function () {
+    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
+    valor.setAttribute('max', capacidad);
+});
