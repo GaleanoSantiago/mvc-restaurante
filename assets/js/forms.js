@@ -423,7 +423,6 @@ const fechaInput = document.getElementById('filtroFecha') || null;
 
 // fechaInput.value = fechaActual;
 
-
 //---------------------------------Cambiar max dependiendo de id_mesa---------------------------------
 
 // Obtener el select y el campo de número
@@ -431,15 +430,36 @@ const select = document.getElementById('id_mesa');
 const valor = document.getElementById('numero_personas');
 
 // Añadir un evento de cambio en el select
-select.addEventListener('change', function() {
-  // Obtener la capacidad de la mesa seleccionada del atributo data-capacidad
-  const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
-  // Establecer el atributo max del input de número
-  valor.setAttribute('max', capacidad);
+select.addEventListener('change', function () {
+    // Obtener la capacidad de la mesa seleccionada del atributo data-capacidad
+    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
+    // Establecer el atributo max del input de número
+    valor.setAttribute('max', capacidad);
 });
 
 // Opcional: Si se desea que el valor máximo se ajuste automáticamente al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-  const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
-  valor.setAttribute('max', capacidad);
+document.addEventListener('DOMContentLoaded', function () {
+    const capacidad = select.options[select.selectedIndex].getAttribute('data-capacidad');
+    valor.setAttribute('max', capacidad);
 });
+
+//--------------------------------- Para mover los btn funciones a un modal  ---------------------------------
+
+// Seleccionar todos los botones con la clase .btn-action
+const actionButtons = document.querySelectorAll(".btn-action") || null;
+if(actionButtons){
+    actionButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Obtener el <td> con la clase .btn-funciones correspondiente a esta fila
+            const parentRow = button.closest("tr"); // Encuentra la fila (<tr>)
+            const funcionesCell = parentRow.querySelector(".btn-funciones"); // Selecciona el <td> .btn-funciones dentro de esa fila
+
+            // Obtener el contenido del .btn-funciones
+            const funcionesContent = funcionesCell.innerHTML;
+
+            // Insertar el contenido en el .modal-body
+            const modalBody = document.querySelector("#exampleModal .modal-contenido");
+            modalBody.innerHTML = funcionesContent;
+        });
+    });
+}

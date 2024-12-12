@@ -23,6 +23,8 @@
         $rows = $obj->getByClave();
         $estado_reserva = $obj->indexEstadoReservacion();  
 
+        require_once("./../head/front_head.php");
+
         // var_dump($reservaciones);
     ?>
     <section>
@@ -82,9 +84,11 @@
                                 <?php endforeach;?>
                             </td>
                             <td>
-                                <form action="./functions.php" method="POST">
-                                    <input type="hidden" name="cancelar">
+                                <form action="./../reservacion/functions.php" method="POST">
+                                    <input type="hidden" name="cambiarEstado">
+                                    <input type="hidden" name="front">
                                     <input type="hidden" name="id_reservacion" value="<?= $row['id_reservacion']?>">
+                                    <input type="hidden" name="estado_reserva" value="1">
                                     <input type="submit" class="btn btn-outline-danger btn-delete" value="Cancelar">
                                 </form>
                             </td>

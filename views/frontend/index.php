@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="./../../assets/css/style.css">
 </head>
 <body>
+    <?php
+
+        require_once("./../head/front_head.php");
+    ?>
     <section>
         <div class="container-fluid">
             
@@ -29,7 +33,6 @@
             <?php else: ?>
                 <div class=""></div>
             <?php endif; ?>
-            <a href="../login/index.php">Iniciar Sesión</a>
             
             <?php 
                 require_once("./../../controllers/MesaController.php");
@@ -40,8 +43,13 @@
                 // die();
             ?>
             <div class="row">
-                <div class="col-3 border-end">
+                <div class="col-3 left-col">
                     <div class="div-descripcion">
+                        <div class="contexto-color">
+                            <div class="contexto"><div class="contexto-texto">Libre</div> <div class="libre-color">x</div></div>
+                            <div class="contexto"><div class="contexto-texto">Pendiente</div> <div class="pendiente-color">x</div></div>
+                            <div class="contexto"><div class="contexto-texto">Ocupado</div><div class="ocupado-color">x</div></div>
+                        </div>
                         <div class="descripcion-body">
 
                             <h3>Descripción</h3>
@@ -87,7 +95,6 @@
 
                         <div class="mesa-box estado-<?= $row['id_estado']?>">
                             <h1 class="titulo-mesa text-center">M <?= $row['n_mesa']?></h1>
-                            <p class="estado-mesa">Estado <?= $row["estado_reservacion"]; ?></p>
                             <p class="capacidad-mesa">Capacidad <?= $row['capacidad_mesa']?></p>
                             <div class="descripcion-mesa d-none">
 

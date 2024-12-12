@@ -19,6 +19,7 @@ if(isset($_REQUEST['login'])){
         // die();
         $_SESSION['user_name'] = $users["usuario"];
         $_SESSION['nombre_apellido'] = $users["apellido"] . " " . $users["nombre"];
+        $_SESSION['nombre'] = $users['nombre'];
         $_SESSION['id_rol'] = $users["id_rol"];
         $_SESSION["nombre_rol"] = $users["nombre_rol"];
         $_SESSION["email"] = $users["email"];
@@ -35,8 +36,15 @@ if(isset($_REQUEST["logout"])){
     session_unset();    //Limpiar session
     session_destroy();  //Destruir session
 
+    if(isset($_REQUEST["front"])){
+        header("Location: ./../frontend/index.php");
+        echo "se cierra sesion desde el front";
+    }else{
+        header("Location: index.php");
+
+    }
+    // die();
     // Redirigir al usuario a la página de inicio o de login
-    header("Location: index.php");
 
 }
 

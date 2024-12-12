@@ -68,7 +68,12 @@ if(isset($_REQUEST["cambiarEstado"])){
     $response = $ReservacionObj->updateEstadoReserva($id_reservacion, $id_estado_reserva);
 
     if($response != false){
-        header('Location: index.php');
+        if(isset($_REQUEST["front"])){
+            header('Location: ./../frontend/index.php');
+        }else{
+            header('Location: index.php');
+
+        }
     }
         
 }

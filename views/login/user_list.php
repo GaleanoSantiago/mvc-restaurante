@@ -72,16 +72,18 @@
                             <td><?= $row['id_rol']?></td>
                             <td><?= $row['fecha_registro']?></td>
                             <td>
-                                <a href="./show.php?id=<?= $row['id_usuario']?>" class="btn btn-outline-primary">Ver</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-primary  btn-action" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Acciones
+                                </button>
                             </td>
-                            <td>
-                                <a href="./edit.php?id=<?= $row['id_usuario']?>" class="btn btn-outline-success">Editar</a>
-                            </td>
-                            <td>
+                            <td class="btn-funciones d-none">
+                                <a href="./edit.php?id=<?= $row['id_usuario']?>" class="btn btn-outline-success w-100">Editar</a>
+                            
                                 <form action="./functions.php" method="POST">
                                     <input type="hidden" name="deleteUsuario">
                                     <input type="hidden" name="id_usuario" value="<?= $row['id_usuario']?>">
-                                    <input type="submit" class="btn btn-outline-danger btn-delete" value="Borrar">
+                                    <input type="submit" class="btn btn-outline-danger btn-delete w-100" value="Borrar">
                                 </form>
                             </td>
                         </tr>
@@ -96,39 +98,28 @@
                 </table>
             </div>
         </div>
-    </section>
-    
-    <!-- Modal -->
+        <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Filtro de licencia</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!-- <form action="empleado_cargo.php" method="POST" autocomplete="off" id="filtro"> -->
-                <div class="modal-body">
-                    <div class="mb-3 d-flex align-items-end gap-4">
-                        <label for="fecha_inicio" class="form-label">Fecha Inicio de Vacaciones:</label>
-                        <input type="date" name="fecha_inicio" id="fecha_inicio" class="form-control">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Acciones</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="mb-3 d-flex align-items-end gap-4">
-                        <label for="fecha_final" class="form-label">Fecha Fin de Vacaciones:</label>
-                        <input type="date" name="fecha_final" id="fecha_final" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-around border">
-                    <button class="btn btn-outline-danger" id="clearFiltro" data-bs-dismiss="modal">Limpiar Filtro</button>
-                    <!-- <input type="submit" value="Aplicar Filtro" class="btn btn-outline-success"> -->
-                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" id="filterBtn">Aplicar Filtro</button>
+                    <div class="modal-body">
+                        <div class="modal-contenido d-flex justify-content-around">
 
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
                 </div>
-                <!-- </form> -->
-                
             </div>
         </div>
-    </div>
+    </section>
+    
+    
 <?php
     require_once("./../head/footer.php");
 ?>
