@@ -36,12 +36,6 @@ class ReservacionController {
 
     public function create() {
         
-            // $dataCliente = [
-            //     'nombre' => $_POST['nombre'],
-            //     'apellido' => $_POST['apellido'],
-            //     'dni' => $_POST['dni'],
-            //     'clave_acceso' => $_POST['clave_acceso']
-            // ];
             $objCliente = new ClienteController();
             // $dataCliente guarda el id_cliente
             $dataCliente = $objCliente->create();

@@ -1,9 +1,8 @@
 <?php
      session_start();
-    if(empty($_SESSION['user_name'])){
-        header("Location:./../../views/login/index.php");
-    } 
-    
+    if (empty($_SESSION['user_name'])) {
+        header("Location: /Tareas/Res/mvc-restaurante/views/login/index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +40,7 @@
                 <div class="logout-container">
                     <form action="./../login/functions.php" class="" method="post">
                         <input type="hidden" name="logout">
-                        <button type="submit" class="btn btn-dark d-flex">Cerrar Sesión</button>
+                        <button type="submit" class="btn btn-dark d-flex">Cerrar Sesión</button>   
                     </form>
                 </div>
             </div>

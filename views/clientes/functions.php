@@ -44,6 +44,28 @@ if(isset($_REQUEST["updateReserva"])){
 }
 
 
+if(isset($_REQUEST["edit"])){
+    $response = $obj->editClienteCompleto();  
+    if($response != false){
+        header('Location: index.php?msg=userGuard');
+    }
+}
+
+
+if(isset($_REQUEST["delete"])){
+
+    $id_cliente = $_REQUEST["id_cliente"];
+
+    $response = $obj->delete($id_cliente);
+    
+    if($response != false){
+
+        header('Location: index.php?msg=elimSuccs');
+
+    }
+}
+
+
 if(isset($_REQUEST["deleteUsuario"])){
 
     $id_reservacion = $_REQUEST["id_reservacion"];

@@ -52,7 +52,24 @@ class ClienteController {
             'apellido' => $_POST['apellido'],
             'id_cliente' => $_POST['id_cliente']
         ];
-        
+
     return $this->model->update($data);
+    }
+
+    public function editClienteCompleto() {
+        
+        $data = [
+            'nombre' => $_POST['nombre'],
+            'apellido' => $_POST['apellido'],
+            'id_cliente' => $_POST['id_cliente'],
+            'clave_acceso_cliente' => $_POST['clave_acceso'],
+            'dni_cliente' => $_POST['dni']
+        ];
+        
+    return $this->model->updateCompleto($data);
+    }
+
+    public function delete($id) {
+        return $this->model->delete($id);
     }
 }

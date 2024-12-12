@@ -1,20 +1,10 @@
 <?php
-
-    require_once("./../head/head.php");
-    // if($_SESSION['id_rol_usuario']!=1){
-    //     header('Location:./../dashboard/index.php');
-    // }
-    /*
-    require_once("./../../controllers/ReservacionesController.php");
-    $obj= new ReservacionController();
-    $rows = $obj->index();
-    */
-    // var_dump($roles_usuario);
-    // die();
+    require_once('./../head/head.php');
     $mesa = $_POST["id_mesa"] ?? 1;
     $n_mesa = $_POST["n_mesa"] ?? "";
 
 ?>
+
 <section>
         <div class="container d-flex flex-column align-items-center">
             <h1 class="text-center">Reservar Mesa <?= $n_mesa?></h1>

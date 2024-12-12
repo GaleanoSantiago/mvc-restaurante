@@ -59,5 +59,19 @@ Class Cliente{
         return  $stmt->execute($dataCliente);
     }
 
+    public function updateCompleto($dataCliente) {
+
+        $stmt = $this->db->prepare("UPDATE clientes SET nombre_cliente= :nombre, apellido_cliente= :apellido, dni_cliente=:dni_cliente ,clave_acceso_cliente=:clave_acceso_cliente
+        WHERE id_cliente = :id_cliente
+        ");
     
+        return  $stmt->execute($dataCliente);
+    }
+
+    public function delete($id){
+        $stmt = $this->db->prepare("DELETE FROM `clientes` 
+        WHERE id_cliente = :id");
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    return $stmt->execute();
+    }
 }

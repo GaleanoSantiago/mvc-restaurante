@@ -23,7 +23,8 @@
             if($row) :?>
         <form action="./functions.php" method="POST" autocomplete="off" id="formCliente">
             <!-- input controlador -->
-            <input type="hidden" name="edit">
+            <input id="id_cliente" name="id_cliente" class="form-control" type="hidden" value="<?= $_GET['id'] ?>" >
+            <input type="hidden" id="inputHidden" name="edit">
             <div class="row  justify-content-center">
                 <div class="col-12 col-lg-6 col-md-6 col-sm-12 column-first">
 

@@ -66,4 +66,3 @@ if(isset($_REQUEST["deleteUsuario"])){
 
     }
 }
-
