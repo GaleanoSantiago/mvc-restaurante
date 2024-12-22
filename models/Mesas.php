@@ -35,7 +35,6 @@ Class Mesa{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    
     // Obtener todas las mesas
     public function obtenerMesas() {
         $query = "SELECT * FROM mesas";
@@ -45,13 +44,9 @@ Class Mesa{
     }
 
     // Agregar una nueva mesa
-    public function agregarMesa($n_mesa, $capacidad_mesa, $descripcion_mesa) {
-        $query = "INSERT INTO mesas (n_mesa, capacidad_mesa, descripcion_mesa) VALUES (:n_mesa, :capacidad_mesa, :descripcion_mesa)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':n_mesa', $n_mesa);
-        $stmt->bindParam(':capacidad_mesa', $capacidad_mesa);
-        $stmt->bindParam(':descripcion_mesa', $descripcion_mesa);
-        return $stmt->execute();
+    public function agregarMesa($dataMesa) {
+        $stmt = $this->db->prepare("INSERT INTO mesas (n_mesa, capacidad_mesa, descripcion_mesa) VALUES (:n_mesa, :capacidad_mesa, :descripcion_mesa)");
+        return $stmt->execute($dataMesa);
     }
 
     // Obtener una mesa por ID
@@ -64,13 +59,13 @@ Class Mesa{
     }
 
     // Actualizar una mesa
-    public function actualizarMesa($id_mesa, $n_mesa, $capacidad_mesa, $descripcion_mesa) {
+    public function actualizarMesa($dataMesa) {
         $query = "UPDATE mesas SET n_mesa = :n_mesa, capacidad_mesa = :capacidad_mesa, descripcion_mesa = :descripcion_mesa WHERE id_mesa = :id_mesa";
         $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':n_mesa', $n_mesa);
-        $stmt->bindParam(':capacidad_mesa', $capacidad_mesa);
-        $stmt->bindParam(':descripcion_mesa', $descripcion_mesa);
-        $stmt->bindParam(':id_mesa', $id_mesa);
+        $stmt->bindParam(':n_mesa', $dataMesa['n_mesa']);
+        $stmt->bindParam(':capacidad_mesa', $dataMesa['capacidad_mesa']);
+        $stmt->bindParam(':descripcion_mesa', $dataMesa['descripcion_mesa']);
+        $stmt->bindParam(':id_mesa', $dataMesa['id_mesa']);
         return $stmt->execute();
     }
 

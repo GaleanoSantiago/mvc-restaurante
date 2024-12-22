@@ -1,17 +1,5 @@
-<?php
-require_once ('models/Mesas_model.php');
-
-$model = new Mesas();
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $n_mesa = $_POST['n_mesa'];
-    $capacidad_mesa = $_POST['capacidad_mesa'];
-    $descripcion_mesa = $_POST['descripcion_mesa'];
-    
-    $model->agregarMesa($n_mesa, $capacidad_mesa, $descripcion_mesa);
-    header('Location: list_mesas.php');
-    exit();
-}
+<?php 
+require_once("./../head/head.php");
 ?>
 
 <!DOCTYPE html>
@@ -24,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
 <h2>Agregar Reservación</h2> <br> <br>
-<form action="" method="POST">
+<form action="./functions.php" method="POST">
+<input type="hidden" name="create" id="inputhidden">
     <label for="n_mesa">Número de Mesa:</label>
     <input type="text" id="n_mesa" name="n_mesa" required><br><br>
     
@@ -41,3 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </body>
 </html>
+
+<?php
+    require_once("./../head/footer.php");
+?>

@@ -1,7 +1,10 @@
+<?php 
+require_once("./../head/head.php");
+?>
 
 <?php
-require_once('models/Mesas_model.php');
-$model = new Mesas();
+require_once ('./../../models/Mesas.php');
+$model = new Mesa();
 $mesas = $model->obtenerMesas();
 ?>
 
@@ -74,3 +77,7 @@ $mesas = $model->obtenerMesas();
 
 </body>
 </html>
+
+<?php
+    require_once("./../head/footer.php");
+?>
